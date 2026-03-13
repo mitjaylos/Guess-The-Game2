@@ -18,3 +18,4 @@ The `images/` folder contains lightweight **SVG placeholders** so the game works
 You can replace them with real screenshots later (just update the `image` paths in `script.js`).
 
 
+# Guess-The-Game2
