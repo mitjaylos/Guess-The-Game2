@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess The Game - Figma UI</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app" id="app">
+      <section class="screen screen--start" id="startScreen">
+        <div class="startHero" role="img" aria-label="Guess the game cover image"></div>
+        <div class="panel startPanel">
+          <div class="gamepad">🎮</div>
+          <h1>Guess the Game</h1>
+          <p class="lead">Screenshot Challenge</p>
+          <ul class="rules">
+            <li><b>1.</b> Вы увидите размытый скриншот игры</li>
+            <li><b>2.</b> Каждые 2 секунды blur уменьшается</li>
+            <li><b>3.</b> Выберите правильный вариант из 4</li>
+            <li><b>4.</b> Чем быстрее ответ - тем больше очков</li>
+            <li><b>5.</b> Пройдите 10 раундов и побейте рекорд</li>
+          </ul>
+          <button
+            class="btn btn--cta"
+            id="btnStart"
+            type="button"
+            onclick="if(window.__startGame){window.__startGame()}else{document.getElementById('startScreen').hidden=true;document.getElementById('gameScreen').hidden=false;}"
+          >
+            СТАРТ
+          </button>
+        </div>
+      </section>
+
+      <section class="screen screen--game" id="gameScreen" hidden>
+        <header class="hud">
+          <div class="hud__left">
+            <div class="chip">🏆 <span id="score">0</span> pts</div>
+            <div class="chip">⏱ <span id="timeElapsed">0.0</span>s</div>
+          </div>
+          <div class="chip">Round <span id="roundIndex">1</span>/<span id="roundTotal">10</span></div>
+        </header>
+
+        <section class="progressPanel panel">
+          <div class="progressTop">
+            <span>Blur: <b><span id="blurAmount">20</span>px</b></span>
+            <span><span id="revealProgress">0</span>% revealed</span>
+          </div>
+          <div class="progressTrack">
+            <div class="progressFill" id="progressFill"></div>
+          </div>
+        </section>
+
+        <section class="shotPanel panel">
+          <div class="shotWrap">
+            <img id="shotImg" class="shot" alt="Game screenshot" />
+            <div class="shotHint" id="shotHint">
+              <div class="shotHint__value"><span id="hintBlur">20</span>px</div>
+              <div class="shotHint__text">Clearing...</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="answers" id="answers" aria-label="Варианты ответов"></section>
+      </section>
+
+      <section class="screen screen--results" id="resultsScreen" hidden>
+        <div class="resultsInner">
+          <h2>Game Complete!</h2>
+          <p class="lead">Вот ваш результат</p>
+
+          <div class="statsGrid">
+            <article class="panel statCard">
+              <div class="label">Total Score</div>
+              <div class="value" id="finalScore">0</div>
+            </article>
+            <article class="panel statCard">
+              <div class="label">Accuracy</div>
+              <div class="value" id="accuracy">0%</div>
+            </article>
+            <article class="panel statCard">
+              <div class="label">Avg. Time</div>
+              <div class="value" id="avgTime">0.0s</div>
+            </article>
+          </div>
+
+          <section class="panel roundsPanel">
+            <h3>Round by Round</h3>
+            <div class="roundsList" id="roundsList"></div>
+          </section>
+
+          <div class="resultActions">
+            <button class="btn btn--cta" id="btnPlayAgain" type="button">Играть снова</button>
+            <button class="btn btn--ghost" id="btnMenu" type="button">В меню</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+
